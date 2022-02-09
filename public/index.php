@@ -5,6 +5,11 @@ require_once('../src/models/User.php');
 
 $user = new User(['name' => 'tawan','email' => 'stawanrio@gmail.com']);
 
-echo $user->getSelect(['id' => 1]);
-echo '<br> <br>';
-echo $user->getSelect(['name' => 'chaves', 'email' => 'chaves@cod3r.com.br']);
+print_r(User::get(['name' => 'chaves'], 'id,name, email'));
+
+echo '<br><br>';
+ 
+foreach(User::get([], 'name') as $user){
+    echo $user->name;
+    echo "<br>";
+}
