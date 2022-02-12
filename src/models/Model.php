@@ -22,13 +22,10 @@
         }
 
         public static function getOne($filters = [], $column = '*'){
+            $class = get_called_class();
             $result = static::getResultSetFromSelect($filters,$column);
-            if($result){
-                $class = get_called_class();
-                while($row = $result->fetch_assoc()){
-                    array_push($objects, new $class($row));
-                }
-            }
+            
+            return $result ? new $class($result->fetch_assoc()) : null;
         }
          
 
