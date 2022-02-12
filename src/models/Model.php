@@ -21,7 +21,27 @@
             $this->values[$key] = $value;
         }
 
-       
+        public static function getOne($filters = [], $column = '*'){
+            $result = static::getResultSetFromSelect($filters,$column);
+            if($result){
+                $class = get_called_class();
+                while($row = $result->fetch_assoc()){
+                    array_push($objects, new $class($row));
+                }
+            }
+        }
+         
+
+       public static function get($filters = [], $column = '*'){
+           $objects = [];
+           $result = static::getResultSetFromSelect($filters,$column);
+           if($result){
+               $class = get_called_class();
+               while($row = $result->fetch_assoc()){
+                   array_push($objects, new $class($row));
+               }
+           }
+       }
         
         public static function getResultSetFromSelect($filters = [], $columns = '*'){
             $sql = "SELECT ${columns} FROM "
