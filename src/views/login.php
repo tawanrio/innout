@@ -12,7 +12,7 @@
     <title>In n' Out</title>
 </head>
 <body>
-    <form class="form-login" action="#" method="post">
+    <form class="form-login" action="#" method="post" autocomplete="off">
         <div class="login-card card">
         <div class="card-header">
             <i class="icofont-travelling mr-2"></i>
@@ -22,15 +22,25 @@
             <i class="icofont-runner-alt-1 ml-2"></i>
         </div>
         <div class="card-body">
+            <?php include(TEMPLATE_PATH . '/messages.php'); ?>
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" class="form-control"
-                 placeholder="Informe o e-mail" autofocus>
+                <input autocomplete="none" type="email" id="email" name="email" 
+                class="form-control <?= isset($errors['email']) ? 'is-invalid' : '' ?>"
+                 value="<?=  isset($email) ? $email : '' ?>"
+                  placeholder="Informe o e-mail" autofocus >
+                  <div class="invalid-feedback">
+                      <?= $errors['email'] ?>
+                  </div>
             </div>
             <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" class="form-control"
-                 placeholder="Informe a Senha" >
+                <input autocomplete="off" type="password" id="password" name="password"
+                 class="form-control <?= isset($errors['password']) ? 'is-invalid' : '' ?>"
+                 placeholder="Informe a Senha">
+                 <div class="invalid-feedback">
+                    <?= $errors['password'] ?>
+                  </div>
             </div>
         </div>
         <div class="card-footer">
