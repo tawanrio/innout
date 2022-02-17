@@ -4,5 +4,6 @@
     <span>Por COD<spann class="text-danger">3</spann>R</span>
 </footer>
 
+<script src="assets/js/app.js"></script>
 </body>
 </html>
